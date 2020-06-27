@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models.SchoolViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ContosoUniversity.Models;
-using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models.SchoolViewModels;
 
 namespace ContosoUniversity.Controllers
 {
@@ -24,6 +24,11 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> About()
         {
             IQueryable<EnrollmentDateGroup> data =
@@ -36,12 +41,6 @@ namespace ContosoUniversity.Controllers
                 };
             return View(await data.AsNoTracking().ToListAsync());
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
